@@ -1,411 +1,1762 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title> Warzone meta</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Site</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-            color: white;
-            font-family: Arial;
+            color: #fff;
+            min-height: 100vh;
         }
 
-        h1 {
-            color: cyan;
-            text-align: center;
+        nav {
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(26, 26, 46, 0.95) 100%);
+            padding: 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(0, 191, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
 
-        h2 {
-            color: cyan;
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
         }
 
-        .menu {
-            background-color: #111;
-            padding: 15px;
-            text-align: center;
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 1.5rem 0;
+            letter-spacing: 2px;
         }
 
-        .menu a {
-            color: white;
-            margin: 0 20px;
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0;
+        }
+
+        .nav-menu li a {
+            display: block;
+            color: #fff;
             text-decoration: none;
+            padding: 2rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .menu a:hover {
-            color: cyan;
+        .nav-menu li:first-child a {
+            border-left: none;
         }
 
-        .section {
-            display: none;
-            padding: 20px;
-            max-width: 1000px;
+        .nav-menu li a:hover {
+            background: rgba(0, 191, 255, 0.1);
+            color: #00d4ff;
+        }
+
+        .nav-menu li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00d4ff, #0099ff);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu li a:hover::after {
+            width: 80%;
+        }
+
+        .hero {
+            margin-top: 80px;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(10, 10, 10, 0.6) 100%), 
+                        url('BO7-MULTIPLAYER-OVERVIEW-TOUT.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            min-height: 400px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(10, 10, 10, 0.5) 100%);
+            z-index: 1;
+        }
+
+        .hero h1, .hero p {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #0099ff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 20px rgba(0, 191, 255, 0.5));
+            }
+            to {
+                filter: drop-shadow(0 0 30px rgba(0, 191, 255, 0.8));
+            }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #ccc;
+            max-width: 600px;
             margin: 0 auto;
         }
 
-        .section.active {
+        .content {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.6) 0%, rgba(10, 10, 10, 0.8) 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 191, 255, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 191, 255, 0.5);
+            box-shadow: 0 15px 40px rgba(0, 191, 255, 0.2);
+        }
+
+        .card h2 {
+            color: #00d4ff;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .card p {
+            color: #bbb;
+            line-height: 1.6;
+        }
+
+        .shop-section {
+            display: none;
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .shop-section.active {
             display: block;
         }
 
-        .box {
-            background-color: #222;
-            border: 2px solid cyan;
-            padding: 15px;
-            margin: 15px 0;
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
-        button {
-            background-color: cyan;
-            color: black;
-            border: none;
-            padding: 10px 20px;
+        .shop-item {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.7) 0%, rgba(10, 10, 10, 0.9) 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 191, 255, 0.2);
+            transition: all 0.3s ease;
             cursor: pointer;
         }
 
-        table {
+        .shop-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 191, 255, 0.6);
+            box-shadow: 0 12px 35px rgba(0, 191, 255, 0.3);
+        }
+
+        .shop-item-img {
             width: 100%;
-            border: 1px solid cyan;
+            height: 200px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0a0a0a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border-bottom: 2px solid rgba(0, 191, 255, 0.2);
         }
 
-        th, td {
-            border: 1px solid cyan;
-            padding: 10px;
+        .shop-item-content {
+            padding: 1.5rem;
         }
 
-        th {
-            background-color: cyan;
-            color: black;
+        .shop-item-title {
+            color: #00d4ff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .shop-item-desc {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .shop-item-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            color: #00d4ff;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .buy-btn {
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            color: #000;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 191, 255, 0.4);
         }
 
         .modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #222;
-            border: 3px solid cyan;
-            padding: 30px;
-            z-index: 1000;
-        }
-
-        .overlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            z-index: 999;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(10, 10, 10, 0.98) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px solid rgba(0, 191, 255, 0.5);
+            text-align: center;
+            max-width: 500px;
+            box-shadow: 0 20px 60px rgba(0, 191, 255, 0.3);
+            animation: modalAppear 0.3s ease;
+        }
+
+        @keyframes modalAppear {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-content h3 {
+            color: #00d4ff;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-content p {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .modal-close-btn {
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            color: #000;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 191, 255, 0.5);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #00d4ff;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .video-section, .download-section {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .video-card {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.7) 0%, rgba(10, 10, 10, 0.9) 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 191, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 191, 255, 0.6);
+            box-shadow: 0 12px 35px rgba(0, 191, 255, 0.3);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0a0a0a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-bottom: 2px solid rgba(0, 191, 255, 0.2);
+        }
+
+        .play-icon {
+            font-size: 3rem;
+            color: #00d4ff;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover .play-icon {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        .video-info {
+            padding: 1.5rem;
+        }
+
+        .video-info h3 {
+            color: #00d4ff;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-info p {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .download-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .download-card {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.7) 0%, rgba(10, 10, 10, 0.9) 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid rgba(0, 191, 255, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .download-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 191, 255, 0.6);
+            box-shadow: 0 12px 35px rgba(0, 191, 255, 0.3);
+        }
+
+        .platform-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .download-card h3 {
+            color: #00d4ff;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .download-card p {
+            color: #aaa;
+            margin-bottom: 1.5rem;
+        }
+
+        .download-btn {
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            color: #000;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 191, 255, 0.4);
+        }
+
+        .game-info {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.6) 0%, rgba(10, 10, 10, 0.8) 100%);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 191, 255, 0.2);
+            margin-top: 3rem;
+        }
+
+        .game-info h3 {
+            color: #00d4ff;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .spec-box {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 191, 255, 0.2);
+        }
+
+        .spec-box h4 {
+            color: #00d4ff;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .spec-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .spec-box li {
+            color: #ccc;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .spec-box li:last-child {
+            border-bottom: none;
+        }
+
+        .weapon-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.7) 0%, rgba(10, 10, 10, 0.9) 100%);
+            color: #fff;
+            border: 2px solid rgba(0, 191, 255, 0.2);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            color: #000;
+            border-color: #00d4ff;
+        }
+
+        .weapons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .weapon-card {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.7) 0%, rgba(10, 10, 10, 0.9) 100%);
+            border-radius: 12px;
+            border: 2px solid rgba(0, 191, 255, 0.2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .weapon-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 191, 255, 0.6);
+            box-shadow: 0 12px 35px rgba(0, 191, 255, 0.3);
+        }
+
+        .weapon-header {
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 2px solid rgba(0, 191, 255, 0.2);
+        }
+
+        .weapon-name {
+            color: #00d4ff;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .weapon-type {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .weapon-attachments {
+            padding: 1.5rem;
+        }
+
+        .attachment-category {
+            margin-bottom: 1rem;
+        }
+
+        .attachment-title {
+            color: #00d4ff;
+            font-size: 0.95rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .attachment-list {
+            color: #ccc;
+            font-size: 0.85rem;
+            padding-left: 1rem;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .meta-card {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(10, 10, 10, 0.95) 100%);
+            border-radius: 15px;
+            border: 2px solid rgba(0, 191, 255, 0.3);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .meta-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 191, 255, 0.7);
+            box-shadow: 0 15px 40px rgba(0, 191, 255, 0.4);
+        }
+
+        .meta-header {
+            background: linear-gradient(135deg, rgba(0, 191, 255, 0.2) 0%, rgba(0, 153, 255, 0.1) 100%);
+            padding: 1.5rem;
+            border-bottom: 2px solid rgba(0, 191, 255, 0.3);
+            position: relative;
+        }
+
+        .meta-rank {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            color: #000;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 1.2rem;
+        }
+
+        .meta-weapon-name {
+            color: #00d4ff;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        .meta-weapon-type {
+            color: #aaa;
+            font-size: 1rem;
+        }
+
+        .meta-description {
+            padding: 1.5rem;
+            color: #ccc;
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .meta-attachments {
+            padding: 1.5rem;
+        }
+
+        .meta-attachments h4 {
+            color: #00d4ff;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .meta-attachments ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .meta-attachments li {
+            color: #ddd;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+
+        .meta-attachments li:last-child {
+            border-bottom: none;
+        }
+
+        .meta-attachments strong {
+            color: #00d4ff;
+        }
+
+        .meta-stats {
+            padding: 1rem 1.5rem 1.5rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-badge {
+            background: rgba(0, 191, 255, 0.1);
+            border: 1px solid rgba(0, 191, 255, 0.3);
+            color: #00d4ff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .meta-combos {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.6) 0%, rgba(10, 10, 10, 0.8) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(0, 191, 255, 0.2);
+        }
+
+        .combo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .combo-card {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 191, 255, 0.2);
+        }
+
+        .combo-card h4 {
+            color: #00d4ff;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .combo-weapons {
+            color: #ddd;
+        }
+
+        .combo-weapons div {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .combo-weapons div:last-child {
+            border-bottom: none;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .contact-card-main {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(10, 10, 10, 0.95) 100%);
+            border-radius: 15px;
+            border: 2px solid rgba(0, 191, 255, 0.3);
+            overflow: hidden;
+        }
+
+        .contact-header {
+            background: linear-gradient(135deg, rgba(0, 191, 255, 0.2) 0%, rgba(0, 153, 255, 0.1) 100%);
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            border-bottom: 2px solid rgba(0, 191, 255, 0.3);
+        }
+
+        .player-avatar {
+            font-size: 4rem;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            border-radius: 50%;
+        }
+
+        .player-name {
+            color: #00d4ff;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .player-status {
+            color: #aaa;
+            font-size: 1rem;
+        }
+
+        .contact-content {
+            padding: 2rem;
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-list li {
+            color: #ddd;
+            padding: 0.7rem 0;
+            font-size: 1.05rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .social-btn {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.7) 0%, rgba(10, 10, 10, 0.9) 100%);
+            border: 2px solid rgba(0, 191, 255, 0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #fff;
+        }
+
+        .social-btn:hover {
+            border-color: rgba(0, 191, 255, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 191, 255, 0.3);
+        }
+
+        .social-icon {
+            font-size: 2rem;
+        }
+
+        .schedule {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .schedule-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            border: 1px solid rgba(0, 191, 255, 0.2);
+        }
+
+        .day {
+            color: #00d4ff;
+            font-weight: bold;
+        }
+
+        .time {
+            color: #ddd;
+        }
+
+        .cta-section {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 191, 255, 0.1) 0%, rgba(0, 153, 255, 0.05) 100%);
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid rgba(0, 191, 255, 0.3);
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(0, 191, 255, 0.5);
+        }
+
+        .contact-stats {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(10, 10, 10, 0.95) 100%);
+            border-radius: 15px;
+            border: 2px solid rgba(0, 191, 255, 0.3);
+            padding: 2rem;
+            height: fit-content;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(0, 191, 255, 0.2);
+            text-align: center;
+        }
+
+        .stat-label {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            color: #00d4ff;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        @media (max-width: 968px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #00d4ff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: rgba(10, 10, 10, 0.98);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .nav-menu.active {
+                max-height: 400px;
+            }
+
+            .nav-menu li a {
+                border-left: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>WARZONE META</h1>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">GAMING</div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#boutiques">Boutiques</a></li>
+                <li><a href="#armes">Armes</a></li>
+                <li><a href="#meta">Meta</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <div class="menu">
-        <a href="#" onclick="changePage('home')">HOME</a>
-        <a href="#" onclick="changePage('boutique')">BOUTIQUE</a>
-        <a href="#" onclick="changePage('armes')">ARMES</a>
-        <a href="#" onclick="changePage('meta')">META</a>
-        <a href="#" onclick="changePage('contact')">CONTACT</a>
+    <section class="hero">
+        <h1>Bienvenue sur Warzone Meta</h1>
+        <p>Découvrez les meilleures configurations d'armes, stratégies gagnantes et builds optimisés pour dominer Warzone. Restez à jour avec les dernières méta, analyses d'armes et conseils tactiques pour améliorer votre gameplay et remporter plus de victoires.</p>
+    </section>
+
+    <div class="content" id="homeContent">
+        <div class="video-section">
+            <h2 class="section-title">🎬 Vidéos & Gameplay</h2>
+            <p style="text-align: center; color: #aaa; margin-bottom: 2rem;">Découvrez les meilleurs moments et guides du jeu</p>
+            
+            <div class="video-grid">
+                <div class="video-card" onclick="window.open('https://www.youtube.com/results?search_query=call+of+duty+black+ops+7+trailer', '_blank')">
+                    <div class="video-thumbnail">
+                        <div class="play-icon">▶</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Trailer Officiel Black Ops 7</h3>
+                        <p>Découvrez le trailer officiel du nouveau Call of Duty</p>
+                    </div>
+                </div>
+
+                <div class="video-card" onclick="window.open('https://www.youtube.com/results?search_query=warzone+best+weapons+meta+guide', '_blank')">
+                    <div class="video-thumbnail">
+                        <div class="play-icon">▶</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Guide des Meilleures Armes</h3>
+                        <p>Top 10 des armes méta pour Warzone</p>
+                    </div>
+                </div>
+
+                <div class="video-card" onclick="window.open('https://www.youtube.com/results?search_query=warzone+best+landing+spots+strategy', '_blank')">
+                    <div class="video-thumbnail">
+                        <div class="play-icon">▶</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Stratégies de Drop</h3>
+                        <p>Les meilleurs endroits pour atterrir et looter</p>
+                    </div>
+                </div>
+
+                <div class="video-card" onclick="window.open('https://www.youtube.com/results?search_query=black+ops+7+multiplayer+gameplay', '_blank')">
+                    <div class="video-thumbnail">
+                        <div class="play-icon">▶</div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Gameplay Multijoueur</h3>
+                        <p>Matchs complets et moments forts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <h2 class="section-title">📥 Télécharger le Jeu</h2>
+            <p style="text-align: center; color: #aaa; margin-bottom: 2rem;">Rejoignez des millions de joueurs dans la bataille</p>
+            
+            <div class="download-cards">
+                <div class="download-card">
+                    <div class="platform-icon">🎮</div>
+                    <h3>PlayStation 5 / PS4</h3>
+                    <p>Disponible sur PlayStation Store</p>
+                    <button class="download-btn" onclick="window.open('https://store.playstation.com/search/call%20of%20duty', '_blank')">Télécharger</button>
+                </div>
+
+                <div class="download-card">
+                    <div class="platform-icon">🎯</div>
+                    <h3>Xbox Series X|S / One</h3>
+                    <p>Disponible sur Microsoft Store</p>
+                    <button class="download-btn" onclick="window.open('https://www.microsoft.com/store/search?q=call%20of%20duty', '_blank')">Télécharger</button>
+                </div>
+
+                <div class="download-card">
+                    <div class="platform-icon">💻</div>
+                    <h3>PC (Battle.net)</h3>
+                    <p>Disponible sur Battle.net</p>
+                    <button class="download-btn" onclick="window.open('https://www.blizzard.com/download', '_blank')">Télécharger</button>
+                </div>
+
+                <div class="download-card">
+                    <div class="platform-icon">💨</div>
+                    <h3>PC (Steam)</h3>
+                    <p>Disponible sur Steam</p>
+                    <button class="download-btn" onclick="window.open('https://store.steampowered.com/search/?term=call+of+duty', '_blank')">Télécharger</button>
+                </div>
+            </div>
+
+            <div class="game-info">
+                <h3>Configuration Requise (PC)</h3>
+                <div class="specs-grid">
+                    <div class="spec-box">
+                        <h4>Minimum</h4>
+                        <ul>
+                            <li>OS: Windows 10 64-bit</li>
+                            <li>CPU: Intel Core i5-6600K</li>
+                            <li>RAM: 8 GB</li>
+                            <li>GPU: NVIDIA GTX 960 / AMD R9 380</li>
+                            <li>Stockage: 125 GB</li>
+                        </ul>
+                    </div>
+                    <div class="spec-box">
+                        <h4>Recommandé</h4>
+                        <ul>
+                            <li>OS: Windows 10/11 64-bit</li>
+                            <li>CPU: Intel Core i7-8700K</li>
+                            <li>RAM: 16 GB</li>
+                            <li>GPU: NVIDIA RTX 3060 / AMD RX 6600 XT</li>
+                            <li>Stockage: 125 GB SSD</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- HOME -->
-    <div id="home" class="section active">
-        <h2>BIENVENUE</h2>
-        <p>Voici mon site sur Warzone. Tu trouveras ici les meilleures armes et configurations pour gagner.</p>
-
-        <h2>VIDEOS</h2>
-        <div class="box">
-            <h3>Trailer Black Ops 7</h3>
-            <button onclick="window.open('https://www.youtube.com/results?search_query=call+of+duty+black+ops+7+trailer')">VOIR</button>
-        </div>
-        <div class="box">
-            <h3>Guide des Armes</h3>
-            <button onclick="window.open('https://www.youtube.com/results?search_query=warzone+best+weapons')">VOIR</button>
-        </div>
-
-        <h2>TELECHARGER LE JEU</h2>
-        <div class="box">
-            <h3>PlayStation</h3>
-            <button onclick="window.open('https://store.playstation.com/search/call%20of%20duty')">TELECHARGER</button>
-        </div>
-        <div class="box">
-            <h3>Xbox</h3>
-            <button onclick="window.open('https://www.microsoft.com/store/search?q=call%20of%20duty')">TELECHARGER</button>
-        </div>
-        <div class="box">
-            <h3>PC</h3>
-            <button onclick="window.open('https://www.blizzard.com/download')">TELECHARGER</button>
-        </div>
-
-        <h2>CONFIG PC</h2>
-        <table>
-            <tr>
-                <th>Composant</th>
-                <th>Minimum</th>
-            </tr>
-            <tr>
-                <td>OS</td>
-                <td>Windows 10</td>
-            </tr>
-            <tr>
-                <td>Processeur</td>
-                <td>Intel Core i5-6600K</td>
-            </tr>
-            <tr>
-                <td>RAM</td>
-                <td>8 GB</td>
-            </tr>
-            <tr>
-                <td>Carte graphique</td>
-                <td>GTX 960</td>
-            </tr>
-        </table>
-    </div>
-
-    <!-- BOUTIQUE -->
-    <div id="boutique" class="section">
-        <h2>BOUTIQUE</h2>
-        <div class="box">
-            <h3>Ranger de la Mort</h3>
-            <p>Prix: 2400 CP</p>
-            <button onclick="showMessage()">ACHETER</button>
-        </div>
-        <div class="box">
-            <h3>Opération Pull-Over II</h3>
-            <p>Prix: 2400 CP</p>
-            <button onclick="showMessage()">ACHETER</button>
-        </div>
-        <div class="box">
-            <h3>Arrêt Forcé</h3>
-            <p>Prix: 2400 CP</p>
-            <button onclick="showMessage()">ACHETER</button>
-        </div>
-        <div class="box">
-            <h3>Grand Luxe</h3>
-            <p>Prix: 2400 CP</p>
-            <button onclick="showMessage()">ACHETER</button>
-        </div>
-        <div class="box">
-            <h3>Pack Sinister</h3>
-            <p>Prix: 2400 CP</p>
-            <button onclick="showMessage()">ACHETER</button>
-        </div>
-        <div class="box">
-            <h3>The Replacer</h3>
-            <p>Prix: 2400 CP</p>
-            <button onclick="showMessage()">ACHETER</button>
-        </div>
-    </div>
-
-    <!-- ARMES -->
-    <div id="armes" class="section">
-        <h2>LES ARMES</h2>
+    <div class="shop-section" id="contactSection">
+        <h2 class="section-title">📧 Rejoins-moi sur Warzone !</h2>
+        <p style="text-align: center; color: #aaa; margin-bottom: 3rem;">Envie de parties épiques et de moments inoubliables ? C'est par ici !</p>
         
-        <h3>FUSILS D'ASSAUT</h3>
-        <div class="box">
-            <p>M15 Mod 0</p>
-            <p>Accessoires: Red Dot, Canon Long, Chargeur Étendu, Compensateur, Poignée Verticale</p>
-        </div>
-        <div class="box">
-            <p>DS20 Mirage</p>
-            <p>Accessoires: Red Dot, Canon Long, Chargeur Étendu, Compensateur, Poignée Verticale</p>
-        </div>
-        <div class="box">
-            <p>Maddox RFB</p>
-            <p>Accessoires: Red Dot, Canon Long, Chargeur Étendu, Compensateur, Poignée Verticale</p>
-        </div>
+        <div class="contact-container">
+            <div class="contact-card-main">
+                <div class="contact-header">
+                    <div class="player-avatar">🎮</div>
+                    <div class="player-info">
+                        <h3 class="player-name">Keyoh01</h3>
+                        <p class="player-status">🟢 En ligne - Prêt pour le combat</p>
+                    </div>
+                </div>
+                
+                <div class="contact-content">
+                    <h4 style="color:#00d4ff;margin-bottom:1rem;font-size:1.3rem;">Pourquoi jouer ensemble ?</h4>
+                    <ul class="contact-list">
+                        <li>✅ Sessions Warzone régulières</li>
+                        <li>💪 Stratégies META et conseils de pro</li>
+                        <li>🏆 Objectif : Remporter des victoires ensemble</li>
+                        <li>🎯 Joueur actif et motivé</li>
+                        <li>😎 Bonne ambiance garantie</li>
+                    </ul>
 
-        <h3>SMG</h3>
-        <div class="box">
-            <p>Carbon 57</p>
-            <p>Accessoires: Red Dot, Canon Court, Chargeur Rapide, Suppresseur, Laser</p>
-        </div>
-        <div class="box">
-            <p>MPC-25</p>
-            <p>Accessoires: Red Dot, Canon Court, Chargeur Rapide, Suppresseur, Laser</p>
-        </div>
-        <div class="box">
-            <p>Kogot-7</p>
-            <p>Accessoires: Red Dot, Canon Court, Chargeur Rapide, Suppresseur, Laser</p>
-        </div>
+                    <div class="social-section">
+                        <h4 style="color:#00d4ff;margin:2rem 0 1rem;font-size:1.2rem;">🎮 Ajoute-moi sur :</h4>
+                        <div class="social-buttons">
+                            <button class="social-btn activision">
+                                <span class="social-icon">🎯</span>
+                                <div>
+                                    <div style="font-size:0.8rem;opacity:0.8;">Activision ID</div>
+                                    <div style="font-weight:bold;">Keyoh01</div>
+                                </div>
+                            </button>
+                            
+                            <button class="social-btn playstation">
+                                <span class="social-icon">🎮</span>
+                                <div>
+                                    <div style="font-size:0.8rem;opacity:0.8;">PlayStation</div>
+                                    <div style="font-weight:bold;">Keyoh01</div>
+                                </div>
+                            </button>
+                            
+                            <button class="social-btn xbox">
+                                <span class="social-icon">🎯</span>
+                                <div>
+                                    <div style="font-size:0.8rem;opacity:0.8;">Xbox Live</div>
+                                    <div style="font-weight:bold;">Keyoh01</div>
+                                </div>
+                            </button>
+                            
+                            <button class="social-btn discord">
+                                <span class="social-icon">💬</span>
+                                <div>
+                                    <div style="font-size:0.8rem;opacity:0.8;">Discord</div>
+                                    <div style="font-weight:bold;">Keyoh01</div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
 
-        <h3>SNIPERS</h3>
-        <div class="box">
-            <p>VS Recon</p>
-            <p>Accessoires: Lunette Sniper, Canon Long, Bipied, Suppresseur</p>
-        </div>
-        <div class="box">
-            <p>Kar98k</p>
-            <p>Accessoires: Lunette Sniper, Canon Long, Bipied, Suppresseur</p>
-        </div>
+                    <div class="availability">
+                        <h4 style="color:#00d4ff;margin:2rem 0 1rem;font-size:1.2rem;">⏰ Disponibilités</h4>
+                        <div class="schedule">
+                            <div class="schedule-item">
+                                <span class="day">Lun - Ven</span>
+                                <span class="time">19h - 00h</span>
+                            </div>
+                            <div class="schedule-item">
+                                <span class="day">Sam - Dim</span>
+                                <span class="time">Toute la journée</span>
+                            </div>
+                        </div>
+                    </div>
 
-        <h3>FUSILS A POMPE</h3>
-        <div class="box">
-            <p>Akita</p>
-            <p>Accessoires: Laser, Canon Court, Chargeur Étendu</p>
-        </div>
-        <div class="box">
-            <p>M10 Breacher</p>
-            <p>Accessoires: Laser, Canon Court, Chargeur Étendu</p>
+                    <div class="cta-section">
+                        <p style="color:#aaa;margin-bottom:1.5rem;font-size:1.1rem;">
+                            Prêt à dominer Warzone ensemble ? Ajoute-moi et on part en mission ! 🚀
+                        </p>
+                        <button class="cta-button" onclick="alert('Copié ! Recherche Keyoh01 dans ton jeu 🎮')">
+                            📋 Copier le Pseudo : Keyoh01
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-stats">
+                <h4 style="color:#00d4ff;margin-bottom:1.5rem;text-align:center;font-size:1.3rem;">📊 Statistiques</h4>
+                <div class="stat-item">
+                    <div class="stat-label">Parties jouées</div>
+                    <div class="stat-value">1,250+</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Victoires</div>
+                    <div class="stat-value">180+</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">K/D Ratio</div>
+                    <div class="stat-value">1.85</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Niveau</div>
+                    <div class="stat-value">250</div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- META -->
-    <div id="meta" class="section">
-        <h2>MEILLEURES CLASSES</h2>
-
-        <div class="box">
-            <h3>CLASSE 1 - MXR 17</h3>
-            <p>Fusil d'Assaut</p>
-            <p><b>Lunette:</b> EAM XL REFLEX</p>
-            <p><b>Bouche:</b> Silencieux Monolithique</p>
-            <p><b>Canon:</b> Canon Greaves Scourge 17</p>
-            <p><b>Crosse:</b> Chargeur à Tambour Rhodes</p>
-            <p><b>Chargeur:</b> Crosse Winch</p>
-        </div>
-
-        <div class="box">
-            <h3>CLASSE 2 - DS20 Mirage</h3>
-            <p>Fusil d'Assaut</p>
-            <p><b>Lunette:</b> EAM XL REFLEX</p>
-            <p><b>Bouche:</b> Silencieux Monolithique</p>
-            <p><b>Canon:</b> Canon Abdicator 17,1"</p>
-            <p><b>Crosse:</b> Crosse Équilibrée Trunk</p>
-            <p><b>Chargeur:</b> Chargeur Étendu Griffon Reserve II</p>
-        </div>
-
-        <div class="box">
-            <h3>CLASSE 3 - MPC-25</h3>
-            <p>SMG</p>
-            <p><b>Poignée:</b> Poignée Magnate</p>
-            <p><b>Canon:</b> Canon VAS Ashe 14,5"</p>
-            <p><b>Mods:</b> Unité de Synchronisation du Recul</p>
-            <p><b>Chargeur:</b> Chargeur à Tambour MPC Overload</p>
-            <p><b>Crosse:</b> Crosse K-1 Pedal</p>
-        </div>
-
-        <div class="box">
-            <h3>CLASSE 4 - VS Recon</h3>
-            <p>Sniper</p>
-            <p><b>Bouche:</b> Silencieux Monolithique</p>
-            <p><b>Canon:</b> Canon G-Force 23"</p>
-            <p><b>Accessoire:</b> Garde-Main Stetig-C</p>
-            <p><b>Poignée:</b> Poignée R-1 Shelf</p>
-            <p><b>Munitions:</b> Haute Pression 7,62 OTAN</p>
-        </div>
-
-        <div class="box">
-            <h3>CLASSE 5 - Kar98k</h3>
-            <p>Sniper</p>
-            <p><b>Lunette:</b> XTEN INTLAS AS-7</p>
-            <p><b>Bouche:</b> Silencieux VTT-7 Spiritfire</p>
-            <p><b>Canon:</b> Canon Long Präzisionsgewehr 762</p>
-            <p><b>Accessoire:</b> Garde-Main DR-6</p>
-            <p><b>Munitions:</b> Grain Élevé 7,92</p>
-        </div>
-
-        <div class="box">
-            <h3>CLASSE 6 - Akita</h3>
-            <p>Fusil à Pompe</p>
-            <p><b>Bouche:</b> Akita Full Bore-12</p>
-            <p><b>Canon:</b> Canon Security Cipher 12"</p>
-            <p><b>Crosse:</b> Crosse Venomous</p>
-            <p><b>Chargeur:</b> Chargeur Étendu Bulk II</p>
-            <p><b>Laser:</b> Laser Tactique Redwell</p>
-        </div>
-    </div>
-
-    <!-- CONTACT -->
-    <div id="contact" class="section">
-        <h2>CONTACT</h2>
+    <div class="shop-section" id="metaSection">
+        <h2 class="section-title">📊 Meilleures Classes META Black Ops 7</h2>
+        <p style="text-align: center; color: #aaa; margin-bottom: 2rem;">Les configurations optimales pour dominer en Décembre 2024</p>
         
-        <div class="box">
-            <h3 style="color:cyan">MON PSEUDO: Keyoh00</h3>
-            <p>Statut: En ligne</p>
+        <div class="meta-grid">
+            <!-- M15 MOD 0 - #1 Fusil d'Assaut -->
+            <div class="meta-card">
+                <div class="meta-header">
+                    <div class="meta-rank">#1</div>
+                    <div class="meta-weapon-name">M15 MOD 0</div>
+                    <div class="meta-weapon-type">Fusil d'Assaut - Polyvalent</div>
+                </div>
+                <div class="meta-description">
+                    L'AR le plus utilisé de BO7 (50%+ des joueurs). Recul quasi-parfait, mobilité excellente et TTK de 315ms jusqu'à 46m. Un vrai couteau suisse.
+                </div>
+                <div class="meta-attachments">
+                    <h4>🔧 Configuration :</h4>
+                    <ul>
+                        <li><strong>Bouche:</strong> VAS 5.56 Suppressor</li>
+                        <li><strong>Canon:</strong> 24" Assemblage Barrel</li>
+                        <li><strong>Lunette:</strong> Lethal Tools ELO</li>
+                        <li><strong>Sous-canon:</strong> H-Lock Foregrip</li>
+                        <li><strong>Poignée:</strong> Hallux Mix Grip</li>
+                    </ul>
+                </div>
+                <div class="meta-stats">
+                    <span class="stat-badge">✅ Recul Parfait</span>
+                    <span class="stat-badge">⚡ Polyvalent</span>
+                    <span class="stat-badge">🏃 Mobile</span>
+                </div>
+            </div>
+
+            <!-- Maddox RFB - #1 META -->
+            <div class="meta-card">
+                <div class="meta-header">
+                    <div class="meta-rank">#1</div>
+                    <div class="meta-weapon-name">Maddox RFB</div>
+                    <div class="meta-weapon-type">Fusil de Précision - Dominant</div>
+                </div>
+                <div class="meta-description">
+                    ABSOLUMENT DOMINANT. TTK de 248ms jusqu'à 25m avec recul ultra-fluide. Mobilité extraordinaire. La meilleure arme de BO7.
+                </div>
+                <div class="meta-attachments">
+                    <h4>🔧 Configuration :</h4>
+                    <ul>
+                        <li><strong>Bouche:</strong> VAS 5.56 Suppressor</li>
+                        <li><strong>Canon:</strong> 24" Assemblage Barrel</li>
+                        <li><strong>Lunette:</strong> Lethal Tools ELO</li>
+                        <li><strong>Sous-canon:</strong> H-Lock Foregrip</li>
+                        <li><strong>Poignée:</strong> Hallux Mix Grip</li>
+                    </ul>
+                </div>
+                <div class="meta-stats">
+                    <span class="stat-badge">💥 TTK 248ms</span>
+                    <span class="stat-badge">👑 META #1</span>
+                    <span class="stat-badge">🎯 Précis</span>
+                </div>
+            </div>
+
+            <!-- Warden 308 - Marksman OP -->
+            <div class="meta-card">
+                <div class="meta-header">
+                    <div class="meta-rank">#1</div>
+                    <div class="meta-weapon-name">Warden 308</div>
+                    <div class="meta-weapon-type">Fusil de Précision - OP</div>
+                </div>
+                <div class="meta-description">
+                    COMPLÈTEMENT CASSÉ. One-shot kill poitrine et au-dessus. Essentiellement un sniper plus maniable. Les développeurs ont créé un monstre.
+                </div>
+                <div class="meta-attachments">
+                    <h4>🔧 Configuration :</h4>
+                    <ul>
+                        <li><strong>Lunette:</strong> 4x Precision Optic</li>
+                        <li><strong>Canon:</strong> Extended Barrel</li>
+                        <li><strong>Sous-canon:</strong> Bipod</li>
+                        <li><strong>Crosse:</strong> Marksman Stock</li>
+                        <li><strong>Poignée:</strong> Precision Grip</li>
+                    </ul>
+                </div>
+                <div class="meta-stats">
+                    <span class="stat-badge">💀 One-Shot</span>
+                    <span class="stat-badge">🚨 OP</span>
+                    <span class="stat-badge">😱 Cassé</span>
+                </div>
+            </div>
+
+            <!-- MXR-17 - Fusil d'Assaut -->
+            <div class="meta-card">
+                <div class="meta-header">
+                    <div class="meta-rank">#2</div>
+                    <div class="meta-weapon-name">MXR-17</div>
+                    <div class="meta-weapon-type">Fusil d'Assaut - Longue Portée</div>
+                </div>
+                <div class="meta-description">
+                    Le Scar-H moderne. Meilleur choix full-auto pour mid-longue portée. Dégâts élevés, cadence lente, recul minimal. Viseurs fer excellents.
+                </div>
+                <div class="meta-attachments">
+                    <h4>🔧 Configuration :</h4>
+                    <ul>
+                        <li><strong>Bouche:</strong> Compensator</li>
+                        <li><strong>Canon:</strong> Reinforced Heavy Barrel</li>
+                        <li><strong>Sous-canon:</strong> Vertical Foregrip</li>
+                        <li><strong>Crosse:</strong> Precision Stock</li>
+                        <li><strong>Chargeur:</strong> Extended Mag</li>
+                    </ul>
+                </div>
+                <div class="meta-stats">
+                    <span class="stat-badge">💥 Dégâts Max</span>
+                    <span class="stat-badge">📏 Portée</span>
+                    <span class="stat-badge">✅ Stable</span>
+                </div>
+            </div>
+
+            <!-- Dravec 45 - #1 SMG -->
+            <div class="meta-card">
+                <div class="meta-header">
+                    <div class="meta-rank">#1</div>
+                    <div class="meta-weapon-name">Dravec 45</div>
+                    <div class="meta-weapon-type">SMG - Versatile</div>
+                </div>
+                <div class="meta-description">
+                    Meilleur SMG full-auto pour mid-range. Contrairement aux autres SMGs, maintient ses dégâts à longue portée avec un excellent contrôle de recul.
+                </div>
+                <div class="meta-attachments">
+                    <h4>🔧 Configuration :</h4>
+                    <ul>
+                        <li><strong>Bouche:</strong> Compensator</li>
+                        <li><strong>Canon:</strong> Extended Barrel</li>
+                        <li><strong>Sous-canon:</strong> Operator Foregrip</li>
+                        <li><strong>Chargeur:</strong> Fast Mag II</li>
+                        <li><strong>Crosse:</strong> CQB Stock</li>
+                    </ul>
+                </div>
+                <div class="meta-stats">
+                    <span class="stat-badge">⚡ Versatile</span>
+                    <span class="stat-badge">📏 Mid-Range</span>
+                    <span class="stat-badge">✅ Constant</span>
+                </div>
+            </div>
+
+            <!-- M8A1 - Marksman Iconique -->
+            <div class="meta-card">
+                <div class="meta-header">
+                    <div class="meta-rank">#2</div>
+                    <div class="meta-weapon-name">M8A1</div>
+                    <div class="meta-weapon-type">Fusil de Précision - Rafales</div>
+                </div>
+                <div class="meta-description">
+                    De retour de BO2! Rafales létales de 4 balles. Se comporte comme un AR à haute puissance. Manquer des tirs peut être punitif.
+                </div>
+                <div class="meta-attachments">
+                    <h4>🔧 Configuration :</h4>
+                    <ul>
+                        <li><strong>Lunette:</strong> Reflex Sight</li>
+                        <li><strong>Canon:</strong> Precision Barrel</li>
+                        <li><strong>Sous-canon:</strong> Ranger Foregrip</li>
+                        <li><strong>Crosse:</strong> Marksman Stock</li>
+                        <li><strong>Poignée:</strong> Quickdraw Grip</li>
+                    </ul>
+                </div>
+                <div class="meta-stats">
+                    <span class="stat-badge">💥 4-Burst</span>
+                    <span class="stat-badge">🎯 Précision</span>
+                    <span class="stat-badge">⭐ Iconique</span>
+                </div>
+            </div>
+
+            <!-- Ryden 45K - SMG Close-Range -->
+            <div class="meta-card">
+                <div class="meta-header">
+                    <div class="meta-rank">#2</div>
+                    <div class="meta-weapon-name">Ryden 45K</div>
+                    <div class="meta-weapon-type">SMG - Close-Quarters</div>
+                </div>
+                <div class="meta-description">
+                    Option META pour le CQC. 2ème meilleure cadence de tir de sa classe avec dégâts respectables. Recul vertical élevé nécessite ajustements.
+                </div>
+                <div class="meta-attachments">
+                    <h4>🔧 Configuration :</h4>
+                    <ul>
+                        <li><strong>Bouche:</strong> Flash Hider</li>
+                        <li><strong>Canon:</strong> Short Barrel</li>
+                        <li><strong>Sous-canon:</strong> Vertical Foregrip</li>
+                        <li><strong>Laser:</strong> 5mW Laser</li>
+                        <li><strong>Crosse:</strong> Collapsed Stock</li>
+                    </ul>
+                </div>
+                <div class="meta-stats">
+                    <span class="stat-badge">⚡ Cadence Rapide</span>
+                    <span class="stat-badge">🏃 Mobilité</span>
+                    <span class="stat-badge">💥 CQC</span>
+                </div>
+            </div>
+
+            <!-- M34 Novaline - Marksman Burst -->
+            <div class="meta-card">
+                <div class="meta-header">
+                    <div class="meta-rank">#3</div>
+                    <div class="meta-weapon-name">M34 Novaline</div>
+                    <div class="meta-weapon-type">Fusil de Précision - 2-Burst</div>
+                </div>
+                <div class="meta-description">
+                    Rafales de 2 balles dévastatrices. Récompense les tirs précis avec des one-burst kills quasi garantis si les 2 projectiles touchent.
+                </div>
+                <div class="meta-attachments">
+                    <h4>🔧 Configuration :</h4>
+                    <ul>
+                        <li><strong>Lunette:</strong> 3x Tactical Scope</li>
+                        <li><strong>Canon:</strong> Match Grade Barrel</li>
+                        <li><strong>Sous-canon:</strong> Bipod</li>
+                        <li><strong>Crosse:</strong> Precision Stock</li>
+                        <li><strong>Chargeur:</strong> Extended Mag</li>
+                    </ul>
+                </div>
+                <div class="meta-stats">
+                    <span class="stat-badge">💥 2-Burst Kill</span>
+                    <span class="stat-badge">🎯 Précis</span>
+                    <span class="stat-badge">⚡ Létal</span>
+                </div>
+            </div>
         </div>
 
-        <div class="box">
-            <h3>POURQUOI JOUER AVEC MOI</h3>
-            <p>- Sessions Warzone régulières</p>
-            <p>- Stratégies META et conseils</p>
-            <p>- Objectif: Gagner ensemble</p>
-            <p>- Joueur actif et motivé</p>
-            <p>- Bonne ambiance</p>
-        </div>
+        <div class="meta-combos">
+            <h3 style="color:#00d4ff;text-align:center;margin:3rem 0 2rem;">🎯 Meilleures Combinaisons de Classe BO7</h3>
+            <div class="combo-grid">
+                <div class="combo-card">
+                    <h4>👑 Setup META Absolu</h4>
+                    <div class="combo-weapons">
+                        <div><strong>Primaire:</strong> Maddox RFB (Dominant)</div>
+                        <div><strong>Secondaire:</strong> M10 Breacher (Shotgun)</div>
+                        <div><strong>Perks:</strong> Lightweight, Fast Hands, Dexterity</div>
+                    </div>
+                    <div style="margin-top:1rem;color:#aaa;font-size:0.9rem;">
+                        La configuration la plus puissante. Maddox RFB pour mid-range + shotgun pour CQC. Mobilité maximale.
+                    </div>
+                </div>
 
-        <div class="box">
-            <h3>AJOUTE-MOI</h3>
-            <p>Activision ID: Keyoh00</p>
-            <p>PlayStation: Keyoh00</p>
-            <p>Xbox Live: Keyoh00</p>
-            <p>Discord: Keyoh00</p>
-        </div>
+                <div class="combo-card">
+                    <h4>🎯 Setup Marksman OP</h4>
+                    <div class="combo-weapons">
+                        <div><strong>Primaire:</strong> Warden 308 (One-Shot)</div>
+                        <div><strong>Secondaire:</strong> Dravec 45 (SMG)</div>
+                        <div><strong>Perks:</strong> Ghost, Fast Hands, Dexterity</div>
+                    </div>
+                    <div style="margin-top:1rem;color:#aaa;font-size:0.9rem;">
+                        Pour les joueurs précis. Warden one-shot à mid-range, Dravec couvre le close-quarters.
+                    </div>
+                </div>
 
-        <div class="box">
-            <h3>DISPONIBILITES</h3>
-            <p>Lundi - Vendredi: 19h - 00h</p>
-            <p>Samedi - Dimanche: Toute la journée</p>
+                <div class="combo-card">
+                    <h4>⚡ Setup Agressif Rush</h4>
+                    <div class="combo-weapons">
+                        <div><strong>Primaire:</strong> M15 MOD 0 (AR Équilibré)</div>
+                        <div><strong>Secondaire:</strong> Ryden 45K (SMG Rapide)</div>
+                        <div><strong>Perks:</strong> Lightweight, Gung-Ho, Dexterity</div>
+                    </div>
+                    <div style="margin-top:1rem;color:#aaa;font-size:0.9rem;">
+                        Pour les rushers. M15 polyvalent + Ryden ultra-rapide. Mobilité et vitesse avant tout.
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="box">
-            <h3>MES STATS</h3>
-            <table>
-                <tr>
-                    <td>Parties jouées</td>
-                    <td style="color:cyan"><b>1250+</b></td>
-                </tr>
-                <tr>
-                    <td>Victoires</td>
-                    <td style="color:cyan"><b>180+</b></td>
-                </tr>
-                <tr>
-                    <td>K/D Ratio</td>
-                    <td style="color:cyan"><b>1.85</b></td>
-                </tr>
-                <tr>
-                    <td>Niveau</td>
-                    <td style="color:cyan"><b>250</b></td>
-                </tr>
-            </table>
-        </div>
-
-        <button onclick="alert('Pseudo copié: Keyoh00')">COPIER MON PSEUDO</button>
     </div>
 
-    <!-- Modal -->
-    <div class="overlay" id="overlay" onclick="hideMessage()"></div>
-    <div class="modal" id="modal">
-        <h3 style="color:cyan">ATTENTION</h3>
-        <p>Tu ne dois pas mettre de l'argent sur le jeu hehe</p>
-        <button onclick="hideMessage()">OK</button>
+    <div class="shop-section" id="weaponsSection">
+        <h2 class="section-title">⚔️ Arsenal Warzone</h2>
+        <p style="text-align: center; color: #aaa; margin-bottom: 2rem;">Toutes les armes et accessoires disponibles</p>
+        
+        <div class="weapon-categories">
+            <button class="category-btn active" onclick="filterWeapons('all')">Toutes</button>
+            <button class="category-btn" onclick="filterWeapons('ar')">Fusils d'Assaut</button>
+            <button class="category-btn" onclick="filterWeapons('smg')">SMG</button>
+            <button class="category-btn" onclick="filterWeapons('lmg')">LMG</button>
+            <button class="category-btn" onclick="filterWeapons('sniper')">Sniper</button>
+            <button class="category-btn" onclick="filterWeapons('shotgun')">Fusils à Pompe</button>
+            <button class="category-btn" onclick="filterWeapons('marksman')">Fusils Précision</button>
+        </div>
+
+        <div class="weapons-grid" id="weaponsGrid"></div>
+    </div>
+
+    <div class="shop-section" id="shopSection">
+        <h2 class="section-title">🛍️ Boutique Warzone</h2>
+        <p style="text-align: center; color: #aaa; margin-bottom: 2rem;">Découvrez les packs et bundles disponibles actuellement</p>
+        
+        <div class="shop-grid">
+            <div class="shop-item">
+                <div class="shop-item-img">💀</div>
+                <div class="shop-item-content">
+                    <div class="shop-item-title">Réactif : Ranger de la Mort</div>
+                    <div class="shop-item-desc">Pack Tracer avec apparence d'opérateur Dead Wrangler et armes réactives</div>
+                    <div class="shop-item-price">
+                        <span class="price">2400 CP</span>
+                        <button class="buy-btn" onclick="showWarning()">Acheter</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shop-item">
+                <div class="shop-item-img">🎿</div>
+                <div class="shop-item-content">
+                    <div class="shop-item-title">Pack Traqueur : Opération Pull-Over II</div>
+                    <div class="shop-item-desc">Pack Tracer Sweater Ops II avec armes et tenues de style hivernal festives</div>
+                    <div class="shop-item-price">
+                        <span class="price">2400 CP</span>
+                        <button class="buy-btn">Acheter</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shop-item">
+                <div class="shop-item-img">⚔️</div>
+                <div class="shop-item-content">
+                    <div class="shop-item-title">Pack Traqueur : Arrêt Forcé</div>
+                    <div class="shop-item-desc">Nouvelle arme avec plan d'arme exclusif et munitions traçantes</div>
+                    <div class="shop-item-price">
+                        <span class="price">2400 CP</span>
+                        <button class="buy-btn">Acheter</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shop-item">
+                <div class="shop-item-img">💎</div>
+                <div class="shop-item-content">
+                    <div class="shop-item-title">Réactif : Grand Luxe</div>
+                    <div class="shop-item-desc">Nouvelle arme réactive avec finitions luxueuses et effets visuels premium</div>
+                    <div class="shop-item-price">
+                        <span class="price">2400 CP</span>
+                        <button class="buy-btn">Acheter</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shop-item">
+                <div class="shop-item-img">🎭</div>
+                <div class="shop-item-content">
+                    <div class="shop-item-title">Pack Sinister</div>
+                    <div class="shop-item-desc">Nouvel opérateur Sinister avec apparence terrifiante et équipement exclusif</div>
+                    <div class="shop-item-price">
+                        <span class="price">2400 CP</span>
+                        <button class="buy-btn">Acheter</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shop-item">
+                <div class="shop-item-img">🔫</div>
+                <div class="shop-item-content">
+                    <div class="shop-item-title">Pack The Replacer</div>
+                    <div class="shop-item-desc">Nouvel opérateur et nouvelle arme avec équipement tactique complet</div>
+                    <div class="shop-item-price">
+                        <span class="price">2400 CP</span>
+                        <button class="buy-btn">Acheter</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shop-item">
+                <div class="shop-item-img">🏆</div>
+                <div class="shop-item-content">
+                    <div class="shop-item-title">Pack Forged in Glory</div>
+                    <div class="shop-item-desc">Pack premium avec apparences dorées et équipements de champion</div>
+                    <div class="shop-item-price">
+                        <span class="price">2400 CP</span>
+                        <button class="buy-btn">Acheter</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shop-item">
+                <div class="shop-item-img">⚡</div>
+                <div class="shop-item-content">
+                    <div class="shop-item-title">Pack Traqueur : Catatonia</div>
+                    <div class="shop-item-desc">Nouvelle arme traçante avec effets visuels électriques et futuristes</div>
+                    <div class="shop-item-price">
+                        <span class="price">2400 CP</span>
+                        <button class="buy-btn">Acheter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="warningModal">
+        <div class="modal-content">
+            <h3>😂 Attention !</h3>
+            <p>Tu ne dois pas mettre de l'argent sur le jeu hehe 💸</p>
+            <button class="modal-close-btn" onclick="closeWarning()">J'ai compris !</button>
+        </div>
     </div>
 
     <script>
-        // Fonction pour changer de page
-        function changePage(page) {
-            // On cache toutes les sections
-            var sections = document.getElementsByClassName('section');
-            for (var i = 0; i < sections.length; i++) {
-                sections[i].classList.remove('active');
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('active');
+        }
+
+        function showSection(section) {
+            const homeContent = document.getElementById('homeContent');
+            const shopSection = document.getElementById('shopSection');
+            const weaponsSection = document.getElementById('weaponsSection');
+            const metaSection = document.getElementById('metaSection');
+            const contactSection = document.getElementById('contactSection');
+            
+            // Cacher toutes les sections
+            homeContent.style.display = 'none';
+            shopSection.classList.remove('active');
+            if (weaponsSection) weaponsSection.classList.remove('active');
+            if (metaSection) metaSection.classList.remove('active');
+            if (contactSection) contactSection.classList.remove('active');
+            
+            // Afficher la section demandée
+            if (section === 'boutiques') {
+                shopSection.classList.add('active');
+            } else if (section === 'armes') {
+                if (weaponsSection) weaponsSection.classList.add('active');
+            } else if (section === 'meta') {
+                if (metaSection) metaSection.classList.add('active');
+            } else if (section === 'contact') {
+                if (contactSection) contactSection.classList.add('active');
+            } else {
+                homeContent.style.display = 'block';
             }
             
-            // On affiche la section demandée
-            document.getElementById(page).classList.add('active');
+            // Fermer le menu mobile après clic
+            document.getElementById('navMenu').classList.remove('active');
         }
 
-        // Fonction pour afficher le message
-        function showMessage() {
-            document.getElementById('modal').style.display = 'block';
-            document.getElementById('overlay').style.display = 'block';
+        function showWarning() {
+            document.getElementById('warningModal').classList.add('active');
         }
 
-        // Fonction pour cacher le message
-        function hideMessage() {
-            document.getElementById('modal').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
+        function closeWarning() {
+            document.getElementById('warningModal').classList.remove('active');
         }
+
+        // Fermer la modal en cliquant en dehors
+        document.getElementById('warningModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeWarning();
+            }
+        });
+
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const href = link.getAttribute('href').replace('#', '');
+                showSection(href);
+            });
+        });
+
+        // Données des armes Black Ops 7
+        const weapons = [
+            // Fusils d'Assaut
+            { name: "M15 Mod 0", type: "Fusil d'Assaut", category: "ar", unlock: "Débloqué par défaut", desc: "Fusil polyvalent avec bon équilibre puissance/précision" },
+            { name: "Peacekeeper AR", type: "Fusil d'Assaut", category: "ar", unlock: "Niveau 16", desc: "Classique de BO2, hybride AR/SMG" },
+            { name: "M16", type: "Fusil d'Assaut", category: "ar", unlock: "Niveau 28", desc: "Fusil à rafales emblématique" },
+            { name: "AN-94", type: "Fusil d'Assaut", category: "ar", unlock: "Niveau 43", desc: "Rafales hypersoniques uniques" },
+            { name: "Scar-H", type: "Fusil d'Assaut", category: "ar", unlock: "Niveau 55", desc: "Dégâts élevés, cadence modérée" },
+            { name: "Type 25", type: "Fusil d'Assaut", category: "ar", unlock: "Saison 1", desc: "Cadence de tir rapide" },
+            
+            // SMG
+            { name: "MSMC", type: "SMG", category: "smg", unlock: "Débloqué par défaut", desc: "SMG compact à haute cadence" },
+            { name: "PDW-57", type: "SMG", category: "smg", unlock: "Niveau 7", desc: "Grand chargeur, polyvalent" },
+            { name: "Skorpion EVO", type: "SMG", category: "smg", unlock: "Niveau 13", desc: "Cadence extrême, mobilité maximale" },
+            { name: "Vector K10", type: "SMG", category: "smg", unlock: "Niveau 19", desc: "Contrôle du recul exceptionnel" },
+            { name: "Chicom CQB", type: "SMG", category: "smg", unlock: "Niveau 34", desc: "SMG à rafales" },
+            { name: "MP7", type: "SMG", category: "smg", unlock: "Niveau 46", desc: "Précision et maniabilité" },
+            { name: "Kogot-7", type: "SMG", category: "smg", unlock: "Saison 1", desc: "Mobilité excellente, courte portée" },
+            
+            // Fusils à Pompe
+            { name: "M10 Breacher", type: "Fusil à Pompe", category: "shotgun", unlock: "Débloqué par défaut", desc: "Pompe avec charge optionnelle" },
+            { name: "Echo 12", type: "Fusil à Pompe", category: "shotgun", unlock: "Niveau 22", desc: "Double canon, grande portée" },
+            { name: "Akita", type: "Fusil à Pompe", category: "shotgun", unlock: "Niveau 40", desc: "Automatique, mobilité excellente" },
+            
+            // LMG
+            { name: "MK.78", type: "LMG", category: "lmg", unlock: "Débloqué par défaut", desc: "Dégâts élevés, grand chargeur" },
+            { name: "XM325", type: "LMG", category: "lmg", unlock: "Niveau 31", desc: "Cadence rapide, bonne mobilité" },
+            
+            // Fusils de Précision
+            { name: "M8A1", type: "Fusil de Précision", category: "marksman", unlock: "Niveau 10", desc: "Rafales de 4 balles iconiques de BO2" },
+            { name: "Warden 308", type: "Fusil de Précision", category: "marksman", unlock: "Niveau 25", desc: "Semi-auto, dégâts très élevés" },
+            { name: "M34 Novaline", type: "Fusil de Précision", category: "marksman", unlock: "Niveau 49", desc: "Rafales de 2, portée maximale" },
+            { name: "Maddox RFB", type: "Fusil de Précision", category: "marksman", unlock: "Saison 1", desc: "Hybride AR/Marksman rapide" },
+            
+            // Snipers
+            { name: "VS Recon", type: "Sniper", category: "sniper", unlock: "Débloqué par défaut", desc: "Verrou rapide, one-shot fiable" },
+            { name: "DSR-1", type: "Sniper", category: "sniper", unlock: "Niveau 37", desc: "Puissance maximale, rechargement lent" },
+            { name: "Ballista", type: "Sniper", category: "sniper", unlock: "Niveau 52", desc: "Équilibre vitesse/puissance" }
+        ];
+
+        const attachmentTypes = {
+            common: [
+                { title: "🎯 Lunette", items: ["Red Dot", "Holographique", "ACOG", "Thermal", "Sniper Scope", "Reflex"] },
+                { title: "🔧 Canon", items: ["Canon Long", "Canon Renforcé", "Canon Supprimé", "Canon Compact"] },
+                { title: "📦 Chargeur", items: ["Chargeur Étendu", "Chargeur Rapide", "Chargeur Tambour", "Munitions Spéciales"] },
+                { title: "🎨 Bouche", items: ["Compensateur", "Suppresseur", "Frein de Bouche", "Flash Hider"] },
+                { title: "⚡ Laser", items: ["Laser Tactique", "Laser 5mW", "Pointeur Laser"] },
+                { title: "🔫 Crosse", items: ["Crosse Tactique", "Crosse Lourde", "Crosse Pliable", "Crosse Ajustable"] },
+                { title: "✊ Poignée", items: ["Poignée Verticale", "Poignée Angulaire", "Bipied", "Handstop"] },
+                { title: "🎯 Munitions", items: ["FMJ", "Hollow Point", "Subsonic", "High Velocity"] }
+            ]
+        };
+
+        function createWeaponCard(weapon) {
+            return `
+                <div class="weapon-card" data-category="${weapon.category}">
+                    <div class="weapon-header">
+                        <div class="weapon-name">${weapon.name}</div>
+                        <div class="weapon-type">${weapon.type} - ${weapon.unlock}</div>
+                        <div style="color: #aaa; font-size: 0.85rem; margin-top: 0.5rem;">${weapon.desc}</div>
+                    </div>
+                    <div class="weapon-attachments">
+                        ${attachmentTypes.common.map(att => `
+                            <div class="attachment-category">
+                                <div class="attachment-title">${att.title}</div>
+                                <div class="attachment-list">${att.items.join(' • ')}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadWeapons() {
+            const grid = document.getElementById('weaponsGrid');
+            if (grid) {
+                grid.innerHTML = weapons.map(w => createWeaponCard(w)).join('');
+            }
+        }
+
+        function filterWeapons(category) {
+            const cards = document.querySelectorAll('.weapon-card');
+            const buttons = document.querySelectorAll('.category-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Charger les armes au chargement de la page
+        loadWeapons();
     </script>
 </body>
 </html>

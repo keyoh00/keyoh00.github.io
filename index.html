@@ -64,7 +64,6 @@
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: all 0.3s ease;
             position: relative;
             border-left: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -76,22 +75,6 @@
         .nav-menu li a:hover {
             background: rgba(0, 191, 255, 0.1);
             color: #00d4ff;
-        }
-
-        .nav-menu li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #00d4ff, #0099ff);
-            transition: width 0.3s ease;
-        }
-
-        .nav-menu li a:hover::after {
-            width: 80%;
         }
 
         .hero {
@@ -129,16 +112,6 @@
             background: linear-gradient(45deg, #00d4ff, #0099ff, #00d4ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from {
-                filter: drop-shadow(0 0 20px rgba(0, 191, 255, 0.5));
-            }
-            to {
-                filter: drop-shadow(0 0 30px rgba(0, 191, 255, 0.8));
-            }
         }
 
         .hero p {
@@ -162,12 +135,10 @@
             padding: 2.5rem;
             border-radius: 15px;
             border: 1px solid rgba(0, 191, 255, 0.2);
-            transition: all 0.3s ease;
             backdrop-filter: blur(10px);
         }
 
         .card:hover {
-            transform: translateY(-10px);
             border-color: rgba(0, 191, 255, 0.5);
             box-shadow: 0 15px 40px rgba(0, 191, 255, 0.2);
         }
@@ -201,75 +172,82 @@
             margin-top: 2rem;
         }
 
-        .shop-item {
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.7) 0%, rgba(10, 10, 10, 0.9) 100%);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 2px solid rgba(0, 191, 255, 0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
 
-        .shop-item:hover {
-            transform: translateY(-8px);
-            border-color: rgba(0, 191, 255, 0.6);
-            box-shadow: 0 12px 35px rgba(0, 191, 255, 0.3);
-        }
 
-        .shop-item-img {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #1a1a2e 0%, #0a0a0a 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            border-bottom: 2px solid rgba(0, 191, 255, 0.2);
-        }
 
-        .shop-item-content {
-            padding: 1.5rem;
-        }
+.shop-item {
+  
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.7) 0%, rgba(10, 10, 10, 0.9) 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid rgba(0, 191, 255, 0.2);
+    cursor: pointer;
+}
 
-        .shop-item-title {
-            color: #00d4ff;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
+.shop-item:hover {
+    border-color: rgba(0, 191, 255, 0.6);
+    box-shadow: 0 12px 35px rgba(0, 191, 255, 0.3);
+}
 
-        .shop-item-desc {
-            color: #aaa;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
 
-        .shop-item-price {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.shop-item {
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.7) 0%, rgba(10, 10, 10, 0.9) 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid rgba(0, 191, 255, 0.2);
+    cursor: pointer;
+}
 
-        .price {
-            color: #00d4ff;
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
 
-        .buy-btn {
-            background: linear-gradient(45deg, #00d4ff, #0099ff);
-            color: #000;
-            border: none;
-            padding: 0.6rem 1.5rem;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+.shop-item-img {
+    display: none;
+}
+
+.shop-item-content {
+    padding: 1rem; 
+}
+
+.shop-item-title {
+    color: #00d4ff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+}
+
+.shop-item-desc {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+}
+
+.shop-item-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price {
+    color: #00d4ff;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.buy-btn {
+    background: linear-gradient(45deg, #00d4ff, #0099ff);
+    color: #000;
+    border: none;
+    padding: 0.45rem 1.2rem;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+
+
 
         .buy-btn:hover {
-            transform: scale(1.05);
             box-shadow: 0 5px 20px rgba(0, 191, 255, 0.4);
         }
 
@@ -298,18 +276,6 @@
             text-align: center;
             max-width: 500px;
             box-shadow: 0 20px 60px rgba(0, 191, 255, 0.3);
-            animation: modalAppear 0.3s ease;
-        }
-
-        @keyframes modalAppear {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
         }
 
         .modal-content h3 {
@@ -334,11 +300,9 @@
             font-weight: bold;
             font-size: 1.1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
 
         .modal-close-btn:hover {
-            transform: scale(1.1);
             box-shadow: 0 8px 25px rgba(0, 191, 255, 0.5);
         }
 
@@ -367,12 +331,10 @@
             border-radius: 12px;
             overflow: hidden;
             border: 2px solid rgba(0, 191, 255, 0.2);
-            transition: all 0.3s ease;
             cursor: pointer;
         }
 
         .video-card:hover {
-            transform: translateY(-8px);
             border-color: rgba(0, 191, 255, 0.6);
             box-shadow: 0 12px 35px rgba(0, 191, 255, 0.3);
         }
@@ -392,12 +354,10 @@
             font-size: 3rem;
             color: #00d4ff;
             opacity: 0.8;
-            transition: all 0.3s ease;
         }
 
         .video-card:hover .play-icon {
             opacity: 1;
-            transform: scale(1.2);
         }
 
         .video-info {
@@ -428,11 +388,9 @@
             border-radius: 12px;
             border: 2px solid rgba(0, 191, 255, 0.2);
             text-align: center;
-            transition: all 0.3s ease;
         }
 
         .download-card:hover {
-            transform: translateY(-8px);
             border-color: rgba(0, 191, 255, 0.6);
             box-shadow: 0 12px 35px rgba(0, 191, 255, 0.3);
         }
@@ -462,12 +420,10 @@
             font-weight: bold;
             font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
             width: 100%;
         }
 
         .download-btn:hover {
-            transform: scale(1.05);
             box-shadow: 0 8px 25px rgba(0, 191, 255, 0.4);
         }
 
@@ -537,7 +493,6 @@
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
 
         .category-btn:hover, .category-btn.active {
@@ -552,41 +507,25 @@
             gap: 2rem;
         }
 
-        .weapon-card {
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.7) 0%, rgba(10, 10, 10, 0.9) 100%);
-            border-radius: 12px;
-            border: 2px solid rgba(0, 191, 255, 0.2);
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
+ 
+.weapon-card {
+    background: linear-gradient(135deg, rgba(26,26,46,0.65), rgba(10,10,10,0.85));
+    border-radius: 10px;
+    border: 1px solid rgba(0,191,255,0.2);
+}
 
-        .weapon-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 191, 255, 0.6);
-            box-shadow: 0 12px 35px rgba(0, 191, 255, 0.3);
-        }
+.weapon-header {
+    padding: 1rem;
+    background: transparent;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
 
-        .weapon-header {
-            padding: 1.5rem;
-            background: rgba(0, 0, 0, 0.3);
-            border-bottom: 2px solid rgba(0, 191, 255, 0.2);
-        }
+.weapon-attachments {
+    padding: 1rem;
+}
 
-        .weapon-name {
-            color: #00d4ff;
-            font-size: 1.4rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
 
-        .weapon-type {
-            color: #aaa;
-            font-size: 0.9rem;
-        }
-
-        .weapon-attachments {
-            padding: 1.5rem;
-        }
+        
 
         .attachment-category {
             margin-bottom: 1rem;
@@ -617,11 +556,9 @@
             border-radius: 15px;
             border: 2px solid rgba(0, 191, 255, 0.3);
             overflow: hidden;
-            transition: all 0.3s ease;
         }
 
         .meta-card:hover {
-            transform: translateY(-8px);
             border-color: rgba(0, 191, 255, 0.7);
             box-shadow: 0 15px 40px rgba(0, 191, 255, 0.4);
         }
@@ -634,15 +571,16 @@
         }
 
         .meta-rank {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: linear-gradient(45deg, #00d4ff, #0099ff);
-            color: #000;
-            font-weight: bold;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-size: 1.2rem;
+    top: auto;
+    bottom: 1rem;
+    right: 1rem;
+    background: rgba(0, 191, 255, 0.2); 
+    color: #fff; 
+    font-weight: normal;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.9rem; 
+    box-shadow: none; 
         }
 
         .meta-weapon-name {
@@ -759,31 +697,27 @@
         }
 
         .contact-card-main {
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(10, 10, 10, 0.95) 100%);
-            border-radius: 15px;
-            border: 2px solid rgba(0, 191, 255, 0.3);
-            overflow: hidden;
-        }
+    background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(10, 10, 10, 0.95) 100%);
+    border-radius: 15px;
+    border: 2px solid rgba(0, 191, 255, 0.3);
+    overflow: hidden;
+}
+
+        
 
         .contact-header {
-            background: linear-gradient(135deg, rgba(0, 191, 255, 0.2) 0%, rgba(0, 153, 255, 0.1) 100%);
-            padding: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            border-bottom: 2px solid rgba(0, 191, 255, 0.3);
-        }
+    background: linear-gradient(135deg, rgba(0, 191, 255, 0.2) 0%, rgba(0, 153, 255, 0.1) 100%);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    border-bottom: 2px solid rgba(0, 191, 255, 0.3);
+}
 
-        .player-avatar {
-            font-size: 4rem;
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(45deg, #00d4ff, #0099ff);
-            border-radius: 50%;
-        }
+
+     .player-avatar {
+    display: none;
+}
 
         .player-name {
             color: #00d4ff;
@@ -828,13 +762,11 @@
             align-items: center;
             gap: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
             color: #fff;
         }
 
         .social-btn:hover {
             border-color: rgba(0, 191, 255, 0.6);
-            transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0, 191, 255, 0.3);
         }
 
@@ -884,11 +816,9 @@
             font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
 
         .cta-button:hover {
-            transform: scale(1.05);
             box-shadow: 0 8px 30px rgba(0, 191, 255, 0.5);
         }
 
@@ -951,7 +881,6 @@
                 background: rgba(10, 10, 10, 0.98);
                 max-height: 0;
                 overflow: hidden;
-                transition: max-height 0.3s ease;
             }
 
             .nav-menu.active {
@@ -967,10 +896,78 @@
                 font-size: 2.5rem;
             }
         }
+        
+*:hover {
+    box-shadow: none !important;
+    filter: none !important;
+}
+
+
+.nav-menu li a:hover,
+.card:hover,
+.shop-item:hover,
+.buy-btn:hover,
+.video-card:hover,
+.download-card:hover,
+.category-btn:hover,
+.weapon-card:hover,
+.meta-card:hover,
+.social-btn:hover,
+.cta-button:hover,
+.modal-close-btn:hover {
+    background: inherit !important;
+    color: inherit !important;
+    border-color: inherit !important;
+    box-shadow: none !important;
+}
+
+
+.video-card:hover .play-icon {
+    opacity: inherit !important;
+}
+
+.shop-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.shop-item {
+    border-radius: 8px;
+}
+
+.shop-item-img {
+    height: 140px;
+    font-size: 2.2rem;
+}
+
+.shop-item-content {
+    padding: 1rem;
+}
+
+.shop-item-title {
+    font-size: 1rem;
+}
+
+.shop-item-desc {
+    font-size: 0.8rem;
+}
+
+.price {
+    font-size: 1.1rem;
+}
+
+.buy-btn {
+    padding: 0.4rem 1.2rem;
+    font-size: 0.85rem;
+}
+
+
+        
     </style>
 </head>
 <body>
-    <nav>
+    <body class="home-page">
+        <nav>
         <div class="nav-container">
             <div class="logo">GAMING</div>
             <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
@@ -1138,20 +1135,7 @@
                         </div>
                     </div>
 
-                    <div class="availability">
-                        <h4 style="color:#00d4ff;margin:2rem 0 1rem;font-size:1.2rem;"> Disponibilités</h4>
-                        <div class="schedule">
-                            <div class="schedule-item">
-                                <span class="day">Lun - Ven</span>
-                                <span class="time">19h - 00h</span>
-                            </div>
-                            <div class="schedule-item">
-                                <span class="day">Sam - Dim</span>
-                                <span class="time">Toute la journée</span>
-                            </div>
-                        </div>
-                    </div>
-
+                
                     <div class="cta-section">
                         <p style="color:#aaa;margin-bottom:1.5rem;font-size:1.1rem;">
                             Contact moi keziakeyoh@gmail.com
@@ -1406,43 +1390,9 @@
             </div>
         </div>
 
-        <div class="meta-combos">
-            <h3 style="color:#00d4ff;text-align:center;margin:3rem 0 2rem;">🎯 Meilleures Combinaisons de Classe BO7</h3>
-            <div class="combo-grid">
-                <div class="combo-card">
-                    <h4> Setup META Absolu</h4>
-                    <div class="combo-weapons">
-                        <div><strong>Primaire:</strong> Maddox RFB (Dominant)</div>
-                        <div><strong>Secondaire:</strong> M10 Breacher (Shotgun)</div>
-                        <div><strong>Perks:</strong> Lightweight, Fast Hands, Dexterity</div>
-                    </div>
-                    <div style="margin-top:1rem;color:#aaa;font-size:0.9rem;">
-                        La configuration la plus puissante. Maddox RFB pour mid-range + shotgun pour CQC. Mobilité maximale.
-                    </div>
-                </div>
+        
 
-                <div class="combo-card">
-                    <h4> Setup Marksman OP</h4>
-                    <div class="combo-weapons">
-                        <div><strong>Primaire:</strong> Warden 308 (One-Shot)</div>
-                        <div><strong>Secondaire:</strong> Dravec 45 (SMG)</div>
-                        <div><strong>Perks:</strong> Ghost, Fast Hands, Dexterity</div>
-                    </div>
-                    <div style="margin-top:1rem;color:#aaa;font-size:0.9rem;">
-                        Pour les joueurs précis. Warden one-shot à mid-range, Dravec couvre le close-quarters.
-                    </div>
-                </div>
-
-                <div class="combo-card">
-                    <h4> Setup Agressif Rush</h4>
-                    <div class="combo-weapons">
-                        <div><strong>Primaire:</strong> M15 MOD 0 (AR Équilibré)</div>
-                        <div><strong>Secondaire:</strong> Ryden 45K (SMG Rapide)</div>
-                        <div><strong>Perks:</strong> Lightweight, Gung-Ho, Dexterity</div>
-                    </div>
-                    <div style="margin-top:1rem;color:#aaa;font-size:0.9rem;">
-                        Pour les rushers. M15 polyvalent + Ryden ultra-rapide. Mobilité et vitesse avant tout.
-                    </div>
+               
                 </div>
             </div>
         </div>
@@ -1454,12 +1404,7 @@
         
         <div class="weapon-categories">
             <button class="category-btn active" onclick="filterWeapons('all')">Toutes</button>
-            <button class="category-btn" onclick="filterWeapons('ar')">Fusils d'Assaut</button>
-            <button class="category-btn" onclick="filterWeapons('smg')">SMG</button>
-            <button class="category-btn" onclick="filterWeapons('lmg')">LMG</button>
-            <button class="category-btn" onclick="filterWeapons('sniper')">Sniper</button>
-            <button class="category-btn" onclick="filterWeapons('shotgun')">Fusils à Pompe</button>
-            <button class="category-btn" onclick="filterWeapons('marksman')">Fusils Précision</button>
+            
         </div>
 
         <div class="weapons-grid" id="weaponsGrid"></div>
@@ -1571,7 +1516,7 @@
     <div class="modal" id="warningModal">
         <div class="modal-content">
             <h3> Attention !</h3>
-            <p>Tu ne dois pas mettre de l'argent sur le jeu hehe 💸</p>
+            <p>Tu ne dois pas mettre de l'argent sur le jeu hehe </p>
             <button class="modal-close-btn" onclick="closeWarning()">J'ai compris !</button>
         </div>
     </div>

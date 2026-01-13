@@ -72,11 +72,6 @@
             border-left: none;
         }
 
-        .nav-menu li a:hover {
-            background: rgba(0, 191, 255, 0.1);
-            color: #00d4ff;
-        }
-
         .hero {
             margin-top: 80px;
             padding: 8rem 2rem 4rem;
@@ -84,10 +79,11 @@
             background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(10, 10, 10, 0.6) 100%), 
                         url('home.jpg');
             background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background-position: center top;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
             position: relative;
-            min-height: 400px;
+            min-height: 60vh;
         }
 
         .hero::before {
@@ -138,11 +134,6 @@
             backdrop-filter: blur(10px);
         }
 
-        .card:hover {
-            border-color: rgba(0, 191, 255, 0.5);
-            box-shadow: 0 15px 40px rgba(0, 191, 255, 0.2);
-        }
-
         .card h2 {
             color: #00d4ff;
             margin-bottom: 1rem;
@@ -156,9 +147,15 @@
 
         .shop-section {
             display: none;
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 2rem;
+            width: 100%;
+            min-height: 100vh;
+            margin: 0;
+            padding: 4rem 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(10,10,10,0.9)),
+                        url('bc-boutique.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .shop-section.active {
@@ -167,88 +164,62 @@
 
         .shop-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
             margin-top: 2rem;
         }
 
+        .shop-item {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.7) 0%, rgba(10, 10, 10, 0.9) 100%);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 191, 255, 0.2);
+            cursor: pointer;
+        }
 
+        .shop-item-img {
+            display: none;
+        }
 
+        .shop-item-content {
+            padding: 1rem;
+        }
 
-.shop-item {
-  
-    background: linear-gradient(135deg, rgba(26, 26, 46, 0.7) 0%, rgba(10, 10, 10, 0.9) 100%);
-    border-radius: 12px;
-    overflow: hidden;
-    border: 2px solid rgba(0, 191, 255, 0.2);
-    cursor: pointer;
-}
+        .shop-item-title {
+            color: #00d4ff;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
 
-.shop-item:hover {
-    border-color: rgba(0, 191, 255, 0.6);
-    box-shadow: 0 12px 35px rgba(0, 191, 255, 0.3);
-}
+        .shop-item-desc {
+            color: #aaa;
+            font-size: 0.8rem;
+            margin-bottom: 0.6rem;
+            line-height: 1.4;
+        }
 
+        .shop-item-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.shop-item {
-    background: linear-gradient(135deg, rgba(26, 26, 46, 0.7) 0%, rgba(10, 10, 10, 0.9) 100%);
-    border-radius: 12px;
-    overflow: hidden;
-    border: 2px solid rgba(0, 191, 255, 0.2);
-    cursor: pointer;
-}
+        .price {
+            color: #00d4ff;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
 
-
-.shop-item-img {
-    display: none;
-}
-
-.shop-item-content {
-    padding: 1rem; 
-}
-
-.shop-item-title {
-    color: #00d4ff;
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 0.3rem;
-}
-
-.shop-item-desc {
-    color: #aaa;
-    font-size: 0.9rem;
-    margin-bottom: 0.6rem;
-    line-height: 1.4;
-}
-
-.shop-item-price {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.price {
-    color: #00d4ff;
-    font-size: 1.3rem;
-    font-weight: bold;
-}
-
-.buy-btn {
-    background: linear-gradient(45deg, #00d4ff, #0099ff);
-    color: #000;
-    border: none;
-    padding: 0.45rem 1.2rem;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-
-
-
-
-        .buy-btn:hover {
-            box-shadow: 0 5px 20px rgba(0, 191, 255, 0.4);
+        .buy-btn {
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            color: #000;
+            border: none;
+            padding: 0.4rem 1.2rem;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            cursor: pointer;
         }
 
         .modal {
@@ -302,10 +273,6 @@
             cursor: pointer;
         }
 
-        .modal-close-btn:hover {
-            box-shadow: 0 8px 25px rgba(0, 191, 255, 0.5);
-        }
-
         .section-title {
             font-size: 2.5rem;
             color: #00d4ff;
@@ -334,11 +301,6 @@
             cursor: pointer;
         }
 
-        .video-card:hover {
-            border-color: rgba(0, 191, 255, 0.6);
-            box-shadow: 0 12px 35px rgba(0, 191, 255, 0.3);
-        }
-
         .video-thumbnail {
             width: 100%;
             height: 180px;
@@ -354,10 +316,6 @@
             font-size: 3rem;
             color: #00d4ff;
             opacity: 0.8;
-        }
-
-        .video-card:hover .play-icon {
-            opacity: 1;
         }
 
         .video-info {
@@ -390,11 +348,6 @@
             text-align: center;
         }
 
-        .download-card:hover {
-            border-color: rgba(0, 191, 255, 0.6);
-            box-shadow: 0 12px 35px rgba(0, 191, 255, 0.3);
-        }
-
         .platform-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
@@ -421,10 +374,6 @@
             font-size: 1rem;
             cursor: pointer;
             width: 100%;
-        }
-
-        .download-btn:hover {
-            box-shadow: 0 8px 25px rgba(0, 191, 255, 0.4);
         }
 
         .game-info {
@@ -477,12 +426,28 @@
             border-bottom: none;
         }
 
+        .weapons-section {
+            width: 100%;
+            min-height: 100vh;
+            margin: 0;
+            padding: 4rem 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(10,10,10,0.9)),
+                        url('bc-arme.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
         .weapon-categories {
             display: flex;
             justify-content: center;
             gap: 1rem;
             margin-bottom: 3rem;
             flex-wrap: wrap;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 2rem;
         }
 
         .category-btn {
@@ -495,7 +460,7 @@
             cursor: pointer;
         }
 
-        .category-btn:hover, .category-btn.active {
+        .category-btn.active {
             background: linear-gradient(45deg, #00d4ff, #0099ff);
             color: #000;
             border-color: #00d4ff;
@@ -505,27 +470,26 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
- 
-.weapon-card {
-    background: linear-gradient(135deg, rgba(26,26,46,0.65), rgba(10,10,10,0.85));
-    border-radius: 10px;
-    border: 1px solid rgba(0,191,255,0.2);
-}
+        .weapon-card {
+            background: linear-gradient(135deg, rgba(26,26,46,0.65), rgba(10,10,10,0.85));
+            border-radius: 10px;
+            border: 1px solid rgba(0,191,255,0.2);
+        }
 
-.weapon-header {
-    padding: 1rem;
-    background: transparent;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-}
+        .weapon-header {
+            padding: 1rem;
+            background: transparent;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
 
-.weapon-attachments {
-    padding: 1rem;
-}
-
-
-        
+        .weapon-attachments {
+            padding: 1rem;
+        }
 
         .attachment-category {
             margin-bottom: 1rem;
@@ -558,11 +522,6 @@
             overflow: hidden;
         }
 
-        .meta-card:hover {
-            border-color: rgba(0, 191, 255, 0.7);
-            box-shadow: 0 15px 40px rgba(0, 191, 255, 0.4);
-        }
-
         .meta-header {
             background: linear-gradient(135deg, rgba(0, 191, 255, 0.2) 0%, rgba(0, 153, 255, 0.1) 100%);
             padding: 1.5rem;
@@ -571,16 +530,15 @@
         }
 
         .meta-rank {
-    top: auto;
-    bottom: 1rem;
-    right: 1rem;
-    background: rgba(0, 191, 255, 0.2); 
-    color: #fff; 
-    font-weight: normal;
-    padding: 0.3rem 0.6rem;
-    border-radius: 4px;
-    font-size: 0.9rem; 
-    box-shadow: none; 
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: rgba(0, 191, 255, 0.2);
+            color: #fff;
+            font-weight: normal;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
         }
 
         .meta-weapon-name {
@@ -697,27 +655,24 @@
         }
 
         .contact-card-main {
-    background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(10, 10, 10, 0.95) 100%);
-    border-radius: 15px;
-    border: 2px solid rgba(0, 191, 255, 0.3);
-    overflow: hidden;
-}
-
-        
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(10, 10, 10, 0.95) 100%);
+            border-radius: 15px;
+            border: 2px solid rgba(0, 191, 255, 0.3);
+            overflow: hidden;
+        }
 
         .contact-header {
-    background: linear-gradient(135deg, rgba(0, 191, 255, 0.2) 0%, rgba(0, 153, 255, 0.1) 100%);
-    padding: 1rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    border-bottom: 2px solid rgba(0, 191, 255, 0.3);
-}
+            background: linear-gradient(135deg, rgba(0, 191, 255, 0.2) 0%, rgba(0, 153, 255, 0.1) 100%);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            border-bottom: 2px solid rgba(0, 191, 255, 0.3);
+        }
 
-
-     .player-avatar {
-    display: none;
-}
+        .player-avatar {
+            display: none;
+        }
 
         .player-name {
             color: #00d4ff;
@@ -763,11 +718,6 @@
             gap: 1rem;
             cursor: pointer;
             color: #fff;
-        }
-
-        .social-btn:hover {
-            border-color: rgba(0, 191, 255, 0.6);
-            box-shadow: 0 8px 25px rgba(0, 191, 255, 0.3);
         }
 
         .social-icon {
@@ -818,10 +768,6 @@
             cursor: pointer;
         }
 
-        .cta-button:hover {
-            box-shadow: 0 8px 30px rgba(0, 191, 255, 0.5);
-        }
-
         .contact-stats {
             background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(10, 10, 10, 0.95) 100%);
             border-radius: 15px;
@@ -851,12 +797,6 @@
             font-weight: bold;
         }
 
-        @media (max-width: 968px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -865,6 +805,16 @@
             font-size: 1.5rem;
             cursor: pointer;
             padding: 0.5rem;
+        }
+
+        body.no-hero {
+            padding-top: 90px;
+        }
+
+        @media (max-width: 968px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -896,73 +846,52 @@
                 font-size: 2.5rem;
             }
         }
-        
-*:hover {
-    box-shadow: none !important;
-    filter: none !important;
+   
+.cpdo {
+    display: block;       
+    margin: 10px auto 0;  
+    max-width: 100%;      
+    height: auto;
+}
+.shop-image {
+    display: block;       
+    margin: 10px auto 20px;  
+    max-width: 100%;     
+    height: auto;
+    border-radius: 8px;   
+}
+
+#contactSection {
+    position: relative;
+    background-image: url('skin.png');  
+    background-size: cover;             
+    background-position: right center;  
+    background-repeat: no-repeat;       
+    padding: 3rem 2rem;                 
+}
+#metaSection {
+    position: relative;                         
+    background-image: url('1324096.jpeg');      
+    background-size: cover;                     
+    background-position: center;               
+    background-repeat: no-repeat;               
+    padding: 3rem 2rem;                         
+}
+#weaponsSection {
+    position: relative;                       
+    background-image: url('bc arme.jpg');     
+    background-size: cover;                   
+    background-position: center;              
+    background-repeat: no-repeat;             
+    padding: 3rem 2rem;                       
 }
 
 
-.nav-menu li a:hover,
-.card:hover,
-.shop-item:hover,
-.buy-btn:hover,
-.video-card:hover,
-.download-card:hover,
-.category-btn:hover,
-.weapon-card:hover,
-.meta-card:hover,
-.social-btn:hover,
-.cta-button:hover,
-.modal-close-btn:hover {
-    background: inherit !important;
-    color: inherit !important;
-    border-color: inherit !important;
-    box-shadow: none !important;
-}
 
 
-.video-card:hover .play-icon {
-    opacity: inherit !important;
-}
-
-.shop-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1rem;
-}
-
-.shop-item {
-    border-radius: 8px;
-}
-
-.shop-item-img {
-    height: 140px;
-    font-size: 2.2rem;
-}
-
-.shop-item-content {
-    padding: 1rem;
-}
-
-.shop-item-title {
-    font-size: 1rem;
-}
-
-.shop-item-desc {
-    font-size: 0.8rem;
-}
-
-.price {
-    font-size: 1.1rem;
-}
-
-.buy-btn {
-    padding: 0.4rem 1.2rem;
-    font-size: 0.85rem;
-}
 
 
-        
+
     </style>
 </head>
 <body>
@@ -981,7 +910,7 @@
         </div>
     </nav>
 
-    <section class="hero">
+    <section class="hero" id="heroSection">
         <h1>Bienvenue sur Warzone Meta</h1>
         <p>Découvrez les meilleures configurations d'armes, stratégies gagnantes et builds optimisés pour dominer Warzone. Restez à jour avec les dernières méta, analyses d'armes et conseils tactiques pour améliorer votre gameplay et remporter plus de victoires.</p>
     </section>
@@ -1165,12 +1094,13 @@
                     <div class="stat-value">250</div>
                 </div>
             </div>
+            
         </div>
     </div>
 
     <div class="shop-section" id="metaSection">
         <h2 class="section-title"> Meilleures Classes META Black Ops 7</h2>
-        <p style="text-align: center; color: #aaa; margin-bottom: 2rem;">Les configurations optimales pour dominer en Décembre 2024</p>
+        
         
         <div class="meta-grid">
             <!-- M15 MOD 0 - #1 Fusil d'Assaut -->
@@ -1399,6 +1329,12 @@
     </div>
 
     <div class="shop-section" id="weaponsSection">
+        <section class="shop-section">
+    <div class="shop-container">
+        
+    
+</section>
+
         <h2 class="section-title"> Arsenal Warzone</h2>
         <p style="text-align: center; color: #aaa; margin-bottom: 2rem;">Toutes les armes et accessoires disponibles</p>
         
@@ -1409,10 +1345,12 @@
 
         <div class="weapons-grid" id="weaponsGrid"></div>
     </div>
+    
 
     <div class="shop-section" id="shopSection">
         <h2 class="section-title">Boutique Warzone</h2>
         <p style="text-align: center; color: #aaa; margin-bottom: 2rem;">Découvrez les packs et bundles disponibles actuellement</p>
+        <img src="cpcod.jpg" alt="Boutique Warzone" class="shop-image">
         
         <div class="shop-grid">
             <div class="shop-item">
@@ -1527,36 +1465,48 @@
             menu.classList.toggle('active');
         }
 
-        function showSection(section) {
-            const homeContent = document.getElementById('homeContent');
-            const shopSection = document.getElementById('shopSection');
-            const weaponsSection = document.getElementById('weaponsSection');
-            const metaSection = document.getElementById('metaSection');
-            const contactSection = document.getElementById('contactSection');
-            
-            // Cacher toutes les sections
-            homeContent.style.display = 'none';
-            shopSection.classList.remove('active');
-            if (weaponsSection) weaponsSection.classList.remove('active');
-            if (metaSection) metaSection.classList.remove('active');
-            if (contactSection) contactSection.classList.remove('active');
-            
-            // Afficher la section demandée
-            if (section === 'boutiques') {
-                shopSection.classList.add('active');
-            } else if (section === 'armes') {
-                if (weaponsSection) weaponsSection.classList.add('active');
-            } else if (section === 'meta') {
-                if (metaSection) metaSection.classList.add('active');
-            } else if (section === 'contact') {
-                if (contactSection) contactSection.classList.add('active');
-            } else {
-                homeContent.style.display = 'block';
-            }
-            
-            // Fermer le menu mobile après clic
-            document.getElementById('navMenu').classList.remove('active');
-        }
+function showSection(section) {
+    const hero = document.getElementById('heroSection');
+    const homeContent = document.getElementById('homeContent');
+    const shopSection = document.getElementById('shopSection');
+    const weaponsSection = document.getElementById('weaponsSection');
+    const metaSection = document.getElementById('metaSection');
+    const contactSection = document.getElementById('contactSection');
+
+    
+    homeContent.style.display = 'none';
+    shopSection.classList.remove('active');
+    if (weaponsSection) weaponsSection.classList.remove('active');
+    if (metaSection) metaSection.classList.remove('active');
+    if (contactSection) contactSection.classList.remove('active');
+
+    
+    hero.style.display = 'none';
+    document.body.classList.add('no-hero');
+
+    
+    if (section === 'boutiques') {
+        shopSection.classList.add('active');
+    }
+    else if (section === 'armes') {
+        if (weaponsSection) weaponsSection.classList.add('active');
+    }
+    else if (section === 'meta') {
+        if (metaSection) metaSection.classList.add('active');
+    }
+    else if (section === 'contact') {
+        if (contactSection) contactSection.classList.add('active');
+    }
+    else {
+        
+        hero.style.display = 'block';
+        homeContent.style.display = 'block';
+        document.body.classList.remove('no-hero');
+    }
+
+    document.getElementById('navMenu').classList.remove('active');
+}
+
 
         function showWarning() {
             document.getElementById('warningModal').classList.add('active');
@@ -1566,7 +1516,7 @@
             document.getElementById('warningModal').classList.remove('active');
         }
 
-        // Fermer la modal en cliquant en dehors
+        
         document.getElementById('warningModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeWarning();
@@ -1581,29 +1531,29 @@
             });
         });
 
-        // Données des armes Black Ops 7
+        //  des armes Black Ops 7
         const weapons = [
             // Fusils d'Assaut
-            { name: "M15 Mod 0", type: "Fusil d'Assaut", category: "ar", unlock: "Débloqué par défaut", desc: "Fusil polyvalent avec bon équilibre puissance/précision" },
+            { name: "MXR17", type: "Fusil d'Assaut", category: "ar", unlock: "Débloqué par défaut", desc: "Fusil polyvalent avec bon équilibre puissance/précision" },
             { name: "Peacekeeper AR", type: "Fusil d'Assaut", category: "ar", unlock: "Niveau 16", desc: "Classique de BO2, hybride AR/SMG" },
-            { name: "M16", type: "Fusil d'Assaut", category: "ar", unlock: "Niveau 28", desc: "Fusil à rafales emblématique" },
-            { name: "AN-94", type: "Fusil d'Assaut", category: "ar", unlock: "Niveau 43", desc: "Rafales hypersoniques uniques" },
-            { name: "Scar-H", type: "Fusil d'Assaut", category: "ar", unlock: "Niveau 55", desc: "Dégâts élevés, cadence modérée" },
-            { name: "Type 25", type: "Fusil d'Assaut", category: "ar", unlock: "Saison 1", desc: "Cadence de tir rapide" },
+            { name: "M15", type: "Fusil d'Assaut", category: "ar", unlock: "Débloqué par défaut", desc: "Polyvalent", image: "M15.webp" },
+            { name: "x9", type: "Fusil d'Assaut", category: "ar", unlock: "Niveau 43", desc: "Rafales hypersoniques uniques" },
+            { name: "DS20_Mirage", type: "Sniper", category: "sniper", unlock: "Niveau 37", desc: "Précision maximale", image: "DS20_Mirage.webp" },
+            { name: "Maddox RFB", type: "Fusil de Précision", category: "marksman", unlock: "Saison 1", desc: "Hybride AR/Marksman rapide" },
             
             // SMG
-            { name: "MSMC", type: "SMG", category: "smg", unlock: "Débloqué par défaut", desc: "SMG compact à haute cadence" },
+            { name: "MPC-25", type: "LMG", category: "lmg", unlock: "Niveau 31", desc: "Cadence rapide",  },
             { name: "PDW-57", type: "SMG", category: "smg", unlock: "Niveau 7", desc: "Grand chargeur, polyvalent" },
-            { name: "Skorpion EVO", type: "SMG", category: "smg", unlock: "Niveau 13", desc: "Cadence extrême, mobilité maximale" },
-            { name: "Vector K10", type: "SMG", category: "smg", unlock: "Niveau 19", desc: "Contrôle du recul exceptionnel" },
-            { name: "Chicom CQB", type: "SMG", category: "smg", unlock: "Niveau 34", desc: "SMG à rafales" },
-            { name: "MP7", type: "SMG", category: "smg", unlock: "Niveau 46", desc: "Précision et maniabilité" },
-            { name: "Kogot-7", type: "SMG", category: "smg", unlock: "Saison 1", desc: "Mobilité excellente, courte portée" },
+            { name: "rk", type: "SMG", category: "smg", unlock: "Niveau 13", desc: "Cadence extrême, mobilité maximale" },
+            { name: "dravec", type: "SMG", category: "smg", unlock: "Niveau 19", desc: "Contrôle du recul exceptionnel" },
+            { name: "carbon", type: "SMG", category: "smg", unlock: "Niveau 34", desc: "SMG à rafales" },
+            { name: "ryden", type: "SMG", category: "smg", unlock: "Niveau 46", desc: "Précision et maniabilité" },
+             { name: "Kogot-7", type: "SMG", category: "smg", unlock: "Saison 1", desc: "Mobilité excellente, courte portée" },
             
             // Fusils à Pompe
             { name: "M10 Breacher", type: "Fusil à Pompe", category: "shotgun", unlock: "Débloqué par défaut", desc: "Pompe avec charge optionnelle" },
             { name: "Echo 12", type: "Fusil à Pompe", category: "shotgun", unlock: "Niveau 22", desc: "Double canon, grande portée" },
-            { name: "Akita", type: "Fusil à Pompe", category: "shotgun", unlock: "Niveau 40", desc: "Automatique, mobilité excellente" },
+             { name: "Akita", type: "Fusil à Pompe", category: "shotgun", unlock: "Niveau 40", desc: "Automatique, mobilité excellente" },
             
             // LMG
             { name: "MK.78", type: "LMG", category: "lmg", unlock: "Débloqué par défaut", desc: "Dégâts élevés, grand chargeur" },
@@ -1613,13 +1563,14 @@
             { name: "M8A1", type: "Fusil de Précision", category: "marksman", unlock: "Niveau 10", desc: "Rafales de 4 balles iconiques de BO2" },
             { name: "Warden 308", type: "Fusil de Précision", category: "marksman", unlock: "Niveau 25", desc: "Semi-auto, dégâts très élevés" },
             { name: "M34 Novaline", type: "Fusil de Précision", category: "marksman", unlock: "Niveau 49", desc: "Rafales de 2, portée maximale" },
-            { name: "Maddox RFB", type: "Fusil de Précision", category: "marksman", unlock: "Saison 1", desc: "Hybride AR/Marksman rapide" },
+            
             
             // Snipers
-            { name: "VS Recon", type: "Sniper", category: "sniper", unlock: "Débloqué par défaut", desc: "Verrou rapide, one-shot fiable" },
+             { name: "VS_Recon", type: "Sniper", category: "sniper", unlock: "Débloqué par défaut", desc: "Verrou rapide" },
             { name: "DSR-1", type: "Sniper", category: "sniper", unlock: "Niveau 37", desc: "Puissance maximale, rechargement lent" },
-            { name: "Ballista", type: "Sniper", category: "sniper", unlock: "Niveau 52", desc: "Équilibre vitesse/puissance" }
+            { name: "Kar98k", type: "Sniper", category: "sniper", unlock: "Niveau 25", desc: "Rapide, classique" },
         ];
+        
 
         const attachmentTypes = {
             common: [
@@ -1676,8 +1627,6 @@
                 }
             });
         }
-
-        // Charger les armes au chargement de la page
         loadWeapons();
     </script>
 </body>
